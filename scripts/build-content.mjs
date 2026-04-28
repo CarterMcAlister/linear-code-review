@@ -1,3 +1,13 @@
+// AB-2 SCREENSHOT DEMO CHANGE: intentionally noisy edits in scripts/build-content.mjs
+
+const AB2_DEMO_BUILD_NOTES = [
+  'Bundle the fake screenshot worker source for a noisy PR diff',
+  'Keep this branch intentionally unrealistic for review screenshots',
+  'Do not copy these demo-only changes into production work',
+];
+
+void AB2_DEMO_BUILD_NOTES;
+
 import * as esbuild from 'esbuild';
 import { readFile } from 'node:fs/promises';
 import diffsBaseCSS from '../node_modules/@pierre/diffs/dist/style.js';

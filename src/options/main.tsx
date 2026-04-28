@@ -1,3 +1,13 @@
+// AB-2 SCREENSHOT DEMO CHANGE: intentionally noisy edits in src/options/main.tsx
+
+const AB2_DEMO_OPTION_LABELS = {
+  token: 'Demo GitHub token field',
+  layout: 'Demo layout selector',
+  theme: 'Demo screenshot theme selector',
+};
+
+void AB2_DEMO_OPTION_LABELS;
+
 import { FormEvent, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';

@@ -1,1 +1,33 @@
+// AB-2 SCREENSHOT DEMO CHANGE: intentionally noisy edits in src/content/styles.ts
 export const styles = ".linear-view-diff-inline-button {\n  align-items: center;\n  background: color-mix(in srgb, currentColor 9%, transparent);\n  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);\n  border-radius: 6px;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font: inherit;\n  gap: 6px;\n  height: 28px;\n  margin-left: 8px;\n  padding: 0 10px;\n}\n\n.linear-view-diff-inline-button:hover {\n  background: color-mix(in srgb, currentColor 14%, transparent);\n}\n\n.linear-view-diff-backdrop {\n  background: rgb(0 0 0 / 48%);\n  inset: 0;\n  position: fixed;\n  z-index: 2147483647;\n}\n\n.linear-view-diff-modal {\n  --linear-view-diff-bg: #101114;\n  --linear-view-diff-panel-bg: #101114;\n  --linear-view-diff-control-bg: #1d2028;\n  --linear-view-diff-control-active-bg: rgb(255 255 255 / 10%);\n  --linear-view-diff-border: rgb(255 255 255 / 10%);\n  --linear-view-diff-text: #f3f4f6;\n  --linear-view-diff-muted: #a5acb8;\n  --linear-view-diff-state: #c7ccd5;\n  --linear-view-diff-error: #ffb4ab;\n  --linear-view-diff-raw-bg: #0b0c0f;\n  --linear-view-diff-shadow: 0 24px 80px rgb(0 0 0 / 45%);\n\n  background: var(--linear-view-diff-bg);\n  border: 1px solid var(--linear-view-diff-border);\n  border-radius: 12px;\n  box-shadow: var(--linear-view-diff-shadow);\n  color: var(--linear-view-diff-text);\n  color-scheme: dark;\n  display: grid;\n  grid-template-rows: auto 1fr;\n  inset: 40px;\n  overflow: hidden;\n  position: fixed;\n  z-index: 2147483647;\n}\n\n.linear-view-diff-modal[data-linear-theme='light'] {\n  --linear-view-diff-bg: #ffffff;\n  --linear-view-diff-panel-bg: #fbfbfb;\n  --linear-view-diff-control-bg: #f2f3f5;\n  --linear-view-diff-control-active-bg: rgb(0 0 0 / 8%);\n  --linear-view-diff-border: rgb(0 0 0 / 10%);\n  --linear-view-diff-text: #1d1d1f;\n  --linear-view-diff-muted: #6b6f76;\n  --linear-view-diff-state: #4f5661;\n  --linear-view-diff-error: #b42318;\n  --linear-view-diff-raw-bg: #f7f8fa;\n  --linear-view-diff-shadow: 0 24px 80px rgb(0 0 0 / 18%);\n  color-scheme: light;\n}\n\n.linear-view-diff-header {\n  align-items: center;\n  border-bottom: 1px solid var(--linear-view-diff-border);\n  display: flex;\n  gap: 12px;\n  min-height: 56px;\n  padding: 0 16px;\n}\n\n.linear-view-diff-title {\n  display: grid;\n  flex: 1;\n  gap: 2px;\n  min-width: 0;\n}\n\n.linear-view-diff-title strong,\n.linear-view-diff-title span {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.linear-view-diff-title span {\n  color: var(--linear-view-diff-muted);\n  font-size: 12px;\n}\n\n.linear-view-diff-layout-toggle {\n  align-items: center;\n  background: var(--linear-view-diff-control-bg);\n  border: 1px solid var(--linear-view-diff-border);\n  border-radius: 8px;\n  display: inline-flex;\n  gap: 2px;\n  padding: 2px;\n}\n\n.linear-view-diff-layout-toggle button {\n  background: transparent;\n  border: 0;\n  border-radius: 6px;\n  color: var(--linear-view-diff-muted);\n  cursor: pointer;\n  font: inherit;\n  height: 32px;\n  padding: 0 10px;\n}\n\n.linear-view-diff-layout-toggle button:hover {\n  color: var(--linear-view-diff-text);\n}\n\n.linear-view-diff-layout-toggle button[data-active] {\n  background: var(--linear-view-diff-control-active-bg);\n  color: var(--linear-view-diff-text);\n}\n\n.linear-view-diff-close,\n.linear-view-diff-open-pr,\n.linear-view-diff-header-button {\n  align-items: center;\n  background: var(--linear-view-diff-control-bg);\n  border: 1px solid var(--linear-view-diff-border);\n  border-radius: 8px;\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-flex;\n  font: inherit;\n  height: 38px;\n  justify-content: center;\n  padding: 0 10px;\n  text-decoration: none;\n}\n\n.linear-view-diff-header-button:hover,\n.linear-view-diff-open-pr:hover,\n.linear-view-diff-close:hover {\n  background: var(--linear-view-diff-control-active-bg);\n}\n\n.linear-view-diff-body {\n  display: grid;\n  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);\n  min-height: 0;\n}\n\n.linear-view-diff-body-sidebar-collapsed {\n  grid-template-columns: minmax(0, 1fr);\n}\n\n.linear-view-diff-sidebar {\n  border-right: 1px solid var(--linear-view-diff-border);\n  display: grid;\n  grid-template-rows: auto 1fr;\n  min-height: 0;\n}\n\n.linear-view-diff-summary {\n  border-bottom: 1px solid var(--linear-view-diff-border);\n  color: var(--linear-view-diff-muted);\n  display: grid;\n  font-size: 12px;\n  gap: 4px;\n  padding: 12px;\n}\n\n.linear-view-diff-tree {\n  min-height: 0;\n}\n\n.linear-view-diff-content {\n  background: var(--linear-view-diff-panel-bg);\n  min-height: 0;\n  overflow: auto;\n}\n\n.linear-view-diff-virtualized-content {\n  box-sizing: border-box;\n  min-height: 100%;\n  padding: 16px;\n}\n\n.linear-view-diff-file-list {\n  display: grid;\n  gap: 16px;\n}\n\n.linear-view-diff-state {\n  align-items: center;\n  color: var(--linear-view-diff-state);\n  display: flex;\n  height: 100%;\n  justify-content: center;\n  padding: 24px;\n  text-align: center;\n}\n\n.linear-view-diff-error {\n  color: var(--linear-view-diff-error);\n}\n\n.linear-view-diff-raw-patch {\n  background: var(--linear-view-diff-raw-bg);\n  border: 1px solid var(--linear-view-diff-border);\n  border-radius: 8px;\n  color: var(--linear-view-diff-text);\n  margin: 0;\n  overflow: auto;\n  padding: 12px;\n}\n";
+
+
+export const ab2DemoScreenshotStyles = `
+  .ab-2-demo-review-shell {
+    border: 1px solid color-mix(in srgb, var(--linear-view-diff-border) 70%, transparent);
+    border-radius: 18px;
+    box-shadow: 0 18px 80px rgb(0 0 0 / 18%);
+  }
+
+  .ab-2-demo-review-shell[data-density="comfortable"] {
+    --ab-2-demo-row-height: 42px;
+    --ab-2-demo-sidebar-width: 320px;
+  }
+
+  .ab-2-demo-review-shell[data-density="compact"] {
+    --ab-2-demo-row-height: 28px;
+    --ab-2-demo-sidebar-width: 260px;
+  }
+
+  .ab-2-demo-review-file-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) auto auto;
+    gap: 12px;
+    min-height: var(--ab-2-demo-row-height, 36px);
+  }
+
+  .ab-2-demo-review-file-row[data-status="added"] { color: #2f9e44; }
+  .ab-2-demo-review-file-row[data-status="modified"] { color: #1971c2; }
+  .ab-2-demo-review-file-row[data-status="removed"] { color: #e03131; }
+  .ab-2-demo-review-file-row[data-status="renamed"] { color: #9c36b5; }
+`;
