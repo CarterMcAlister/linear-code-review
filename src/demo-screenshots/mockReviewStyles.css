@@ -1,0 +1,1051 @@
+/* AB-2 generated screenshot styles. Not imported by runtime code. */
+
+.ab-2-demo-row-001 {
+  --demo-accent: hsl(17 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-002 {
+  --demo-accent: hsl(34 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-003 {
+  --demo-accent: hsl(51 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-004 {
+  --demo-accent: hsl(68 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-005 {
+  --demo-accent: hsl(85 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-006 {
+  --demo-accent: hsl(102 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-007 {
+  --demo-accent: hsl(119 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-008 {
+  --demo-accent: hsl(136 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-009 {
+  --demo-accent: hsl(153 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-010 {
+  --demo-accent: hsl(170 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-011 {
+  --demo-accent: hsl(187 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-012 {
+  --demo-accent: hsl(204 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-013 {
+  --demo-accent: hsl(221 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-014 {
+  --demo-accent: hsl(238 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-015 {
+  --demo-accent: hsl(255 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-016 {
+  --demo-accent: hsl(272 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-017 {
+  --demo-accent: hsl(289 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-018 {
+  --demo-accent: hsl(306 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-019 {
+  --demo-accent: hsl(323 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-020 {
+  --demo-accent: hsl(340 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-021 {
+  --demo-accent: hsl(357 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-022 {
+  --demo-accent: hsl(14 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-023 {
+  --demo-accent: hsl(31 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-024 {
+  --demo-accent: hsl(48 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-025 {
+  --demo-accent: hsl(65 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-026 {
+  --demo-accent: hsl(82 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-027 {
+  --demo-accent: hsl(99 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-028 {
+  --demo-accent: hsl(116 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-029 {
+  --demo-accent: hsl(133 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-030 {
+  --demo-accent: hsl(150 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-031 {
+  --demo-accent: hsl(167 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-032 {
+  --demo-accent: hsl(184 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-033 {
+  --demo-accent: hsl(201 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-034 {
+  --demo-accent: hsl(218 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-035 {
+  --demo-accent: hsl(235 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-036 {
+  --demo-accent: hsl(252 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-037 {
+  --demo-accent: hsl(269 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-038 {
+  --demo-accent: hsl(286 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-039 {
+  --demo-accent: hsl(303 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-040 {
+  --demo-accent: hsl(320 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-041 {
+  --demo-accent: hsl(337 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-042 {
+  --demo-accent: hsl(354 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-043 {
+  --demo-accent: hsl(11 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-044 {
+  --demo-accent: hsl(28 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-045 {
+  --demo-accent: hsl(45 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-046 {
+  --demo-accent: hsl(62 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-047 {
+  --demo-accent: hsl(79 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-048 {
+  --demo-accent: hsl(96 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-049 {
+  --demo-accent: hsl(113 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-050 {
+  --demo-accent: hsl(130 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-051 {
+  --demo-accent: hsl(147 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-052 {
+  --demo-accent: hsl(164 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-053 {
+  --demo-accent: hsl(181 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-054 {
+  --demo-accent: hsl(198 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-055 {
+  --demo-accent: hsl(215 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-056 {
+  --demo-accent: hsl(232 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-057 {
+  --demo-accent: hsl(249 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-058 {
+  --demo-accent: hsl(266 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-059 {
+  --demo-accent: hsl(283 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-060 {
+  --demo-accent: hsl(300 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-061 {
+  --demo-accent: hsl(317 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-062 {
+  --demo-accent: hsl(334 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-063 {
+  --demo-accent: hsl(351 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-064 {
+  --demo-accent: hsl(8 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-065 {
+  --demo-accent: hsl(25 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-066 {
+  --demo-accent: hsl(42 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-067 {
+  --demo-accent: hsl(59 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-068 {
+  --demo-accent: hsl(76 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-069 {
+  --demo-accent: hsl(93 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-070 {
+  --demo-accent: hsl(110 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-071 {
+  --demo-accent: hsl(127 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-072 {
+  --demo-accent: hsl(144 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-073 {
+  --demo-accent: hsl(161 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-074 {
+  --demo-accent: hsl(178 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-075 {
+  --demo-accent: hsl(195 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-076 {
+  --demo-accent: hsl(212 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-077 {
+  --demo-accent: hsl(229 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-078 {
+  --demo-accent: hsl(246 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-079 {
+  --demo-accent: hsl(263 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-080 {
+  --demo-accent: hsl(280 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-081 {
+  --demo-accent: hsl(297 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-082 {
+  --demo-accent: hsl(314 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-083 {
+  --demo-accent: hsl(331 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-084 {
+  --demo-accent: hsl(348 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-085 {
+  --demo-accent: hsl(5 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-086 {
+  --demo-accent: hsl(22 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-087 {
+  --demo-accent: hsl(39 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-088 {
+  --demo-accent: hsl(56 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-089 {
+  --demo-accent: hsl(73 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-090 {
+  --demo-accent: hsl(90 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-091 {
+  --demo-accent: hsl(107 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-092 {
+  --demo-accent: hsl(124 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-093 {
+  --demo-accent: hsl(141 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-094 {
+  --demo-accent: hsl(158 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-095 {
+  --demo-accent: hsl(175 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-096 {
+  --demo-accent: hsl(192 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-097 {
+  --demo-accent: hsl(209 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-098 {
+  --demo-accent: hsl(226 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-099 {
+  --demo-accent: hsl(243 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-100 {
+  --demo-accent: hsl(260 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-101 {
+  --demo-accent: hsl(277 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-102 {
+  --demo-accent: hsl(294 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-103 {
+  --demo-accent: hsl(311 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-104 {
+  --demo-accent: hsl(328 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-105 {
+  --demo-accent: hsl(345 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-106 {
+  --demo-accent: hsl(2 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-107 {
+  --demo-accent: hsl(19 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-108 {
+  --demo-accent: hsl(36 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-109 {
+  --demo-accent: hsl(53 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-110 {
+  --demo-accent: hsl(70 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-111 {
+  --demo-accent: hsl(87 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-112 {
+  --demo-accent: hsl(104 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-113 {
+  --demo-accent: hsl(121 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-114 {
+  --demo-accent: hsl(138 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-115 {
+  --demo-accent: hsl(155 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-116 {
+  --demo-accent: hsl(172 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-117 {
+  --demo-accent: hsl(189 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-118 {
+  --demo-accent: hsl(206 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-119 {
+  --demo-accent: hsl(223 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-120 {
+  --demo-accent: hsl(240 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-121 {
+  --demo-accent: hsl(257 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-122 {
+  --demo-accent: hsl(274 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-123 {
+  --demo-accent: hsl(291 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-124 {
+  --demo-accent: hsl(308 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-125 {
+  --demo-accent: hsl(325 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-126 {
+  --demo-accent: hsl(342 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-127 {
+  --demo-accent: hsl(359 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-128 {
+  --demo-accent: hsl(16 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-129 {
+  --demo-accent: hsl(33 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-130 {
+  --demo-accent: hsl(50 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-131 {
+  --demo-accent: hsl(67 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-132 {
+  --demo-accent: hsl(84 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-133 {
+  --demo-accent: hsl(101 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-134 {
+  --demo-accent: hsl(118 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-135 {
+  --demo-accent: hsl(135 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-136 {
+  --demo-accent: hsl(152 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-137 {
+  --demo-accent: hsl(169 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-138 {
+  --demo-accent: hsl(186 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-139 {
+  --demo-accent: hsl(203 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-140 {
+  --demo-accent: hsl(220 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.55;
+}
+
+.ab-2-demo-row-141 {
+  --demo-accent: hsl(237 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.59;
+}
+
+.ab-2-demo-row-142 {
+  --demo-accent: hsl(254 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.63;
+}
+
+.ab-2-demo-row-143 {
+  --demo-accent: hsl(271 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.67;
+}
+
+.ab-2-demo-row-144 {
+  --demo-accent: hsl(288 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.71;
+}
+
+.ab-2-demo-row-145 {
+  --demo-accent: hsl(305 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 9px;
+  opacity: 0.75;
+}
+
+.ab-2-demo-row-146 {
+  --demo-accent: hsl(322 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 10px;
+  opacity: 0.79;
+}
+
+.ab-2-demo-row-147 {
+  --demo-accent: hsl(339 70% 50%);
+  border-left: 4px solid var(--demo-accent);
+  padding-inline-start: 11px;
+  opacity: 0.83;
+}
+
+.ab-2-demo-row-148 {
+  --demo-accent: hsl(356 70% 50%);
+  border-left: 1px solid var(--demo-accent);
+  padding-inline-start: 12px;
+  opacity: 0.87;
+}
+
+.ab-2-demo-row-149 {
+  --demo-accent: hsl(13 70% 50%);
+  border-left: 2px solid var(--demo-accent);
+  padding-inline-start: 13px;
+  opacity: 0.91;
+}
+
+.ab-2-demo-row-150 {
+  --demo-accent: hsl(30 70% 50%);
+  border-left: 3px solid var(--demo-accent);
+  padding-inline-start: 8px;
+  opacity: 0.55;
+}
