@@ -1,0 +1,29 @@
+{
+  "name": "linear-code-review",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build:options -- --watch",
+    "build": "tsc --noEmit && npm run build:options && npm run build:content",
+    "build:options": "vite build",
+    "build:content": "node scripts/build-content.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pierre/diffs": "^1.0.0-beta.3",
+    "@pierre/trees": "^1.0.0-beta.3",
+    "@vitejs/plugin-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/chrome": "latest",
+    "@types/node": "^25.6.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "esbuild": "^0.28.0"
+  }
+}

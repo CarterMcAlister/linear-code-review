@@ -1,0 +1,15 @@
+[tools]
+node = "24"
+bun = "latest"
+
+[tasks.install]
+description = "Install project dependencies"
+run = "bun install"
+
+[tasks.build]
+description = "Build the Chrome extension into dist/"
+run = "bun run build"
+
+[tasks.typecheck]
+description = "Run TypeScript type checking"
+run = "bun run typecheck"
