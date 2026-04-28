@@ -17,6 +17,26 @@ export function App({ pullRequestUrl, onClose }: AppProps) {
   const [state, setState] = useState<OverlayState>({ status: 'loading', pullRequestUrl });
 
   useEffect(() => {
+    if (state.status === 'closed') {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      onClose();
+    };
+
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
+  }, [onClose, state.status]);
+
+  useEffect(() => {
     let isCancelled = false;
     const ref = parseGitHubPullRequestUrl(pullRequestUrl);
 

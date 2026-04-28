@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { parsePatchFiles, type FileDiffMetadata } from '@pierre/diffs';
-import { FileDiff } from '@pierre/diffs/react';
+import { FileDiff, Virtualizer } from '@pierre/diffs/react';
+import { prepareFileTreeInput, type FileTreePreparedInput, type FileTreeRowDecorationRenderer, type GitStatusEntry } from '@pierre/trees';
 import { FileTree, useFileTree } from '@pierre/trees/react';
 import type { GitHubPullRequestFile, PullRequestDiffData } from './github';
 
@@ -15,12 +16,32 @@ type FileTreePanelProps = {
   onSelectPath: (path: string) => void;
 };
 
+type DiffLayout = 'switched' | 'stacked';
+type LinearTheme = 'light' | 'dark';
+
 declare const __DIFFS_BASE_CSS__: string;
 
-const diffOptions = {
-  diffStyle: 'unified' as const,
+const DIFF_LAYOUT_STORAGE_KEY = 'diffLayout';
+const DEFAULT_DIFF_LAYOUT: DiffLayout = 'stacked';
+
+const TREE_INITIAL_VISIBLE_ROW_COUNT = 80;
+const TREE_OVERSCAN = 12;
+
+const diffMetrics = {
+  hunkLineCount: 80,
+  lineHeight: 21,
+  diffHeaderHeight: 50,
+  hunkSeparatorHeight: 40,
+  fileGap: 16,
+};
+
+const virtualizerConfig = {
+  overscrollSize: 900,
+  intersectionObserverMargin: 900,
+};
+
+const baseDiffOptions = {
   hunkSeparators: 'line-info-basic' as const,
-  theme: 'github-dark' as const,
   unsafeCSS: __DIFFS_BASE_CSS__,
 };
 
@@ -37,14 +58,65 @@ export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
   }, [parsedDiffs]);
 
   const allDiffs = useMemo(() => parsedDiffs.flatMap((parsedPatch) => parsedPatch.files), [parsedDiffs]);
+  const diffPathSet = useMemo(() => new Set(allDiffs.map((fileDiff) => fileDiff.name)), [allDiffs]);
   const paths = useMemo(() => data.files.map((file) => file.filename), [data.files]);
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
-  const selectedDiff = selectedPath ? diffsByPath.get(selectedPath) : null;
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [diffLayout, setDiffLayout] = useState<DiffLayout>(DEFAULT_DIFF_LAYOUT);
+  const [linearTheme, setLinearTheme] = useState<LinearTheme>(() => getLinearTheme());
+  const modalRef = useRef<HTMLElement | null>(null);
+  const diffOptions = useMemo(
+    () => ({
+      ...baseDiffOptions,
+      diffStyle: diffLayout === 'switched' ? ('split' as const) : ('unified' as const),
+      theme: linearTheme === 'light' ? ('pierre-light' as const) : ('pierre-dark' as const),
+      themeType: linearTheme,
+    }),
+    [diffLayout, linearTheme],
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => setLinearTheme(getLinearTheme()));
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    readDiffLayoutPreference().then((storedLayout) => {
+      if (!isCancelled) {
+        setDiffLayout(storedLayout);
+      }
+    });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  const updateDiffLayout = (nextLayout: DiffLayout) => {
+    setDiffLayout(nextLayout);
+    void writeDiffLayoutPreference(nextLayout);
+  };
+
+  const scrollToFile = (path: string) => {
+    requestAnimationFrame(() => {
+      const fileAnchors = modalRef.current?.querySelectorAll<HTMLElement>('[data-linear-view-file-path]');
+      const target = Array.from(fileAnchors ?? []).find((element) => element.dataset.linearViewFilePath === path);
+      target?.scrollIntoView({ block: 'start' });
+    });
+  };
+
+  const selectFile = (path: string) => {
+    setSelectedPath(path);
+    scrollToFile(path);
+  };
 
   return (
     <>
       <div className="linear-view-diff-backdrop" onClick={onClose} />
-      <section className="linear-view-diff-modal" role="dialog" aria-modal="true" aria-label="Pull request diff">
+      <section ref={modalRef} className="linear-view-diff-modal" data-linear-theme={linearTheme} role="dialog" aria-modal="true" aria-label="Pull request diff">
         <header className="linear-view-diff-header">
           <div className="linear-view-diff-title">
             <strong>{data.pullRequest.title}</strong>
@@ -52,6 +124,10 @@ export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
               {data.pullRequest.base.repo.full_name} #{data.pullRequest.number} · {data.pullRequest.base.ref} ← {data.pullRequest.head.ref}
             </span>
           </div>
+          <button className="linear-view-diff-header-button" type="button" onClick={() => setIsSidebarCollapsed((collapsed) => !collapsed)}>
+            {isSidebarCollapsed ? 'Show files' : 'Hide files'}
+          </button>
+          <DiffLayoutToggle value={diffLayout} onChange={updateDiffLayout} />
           <a className="linear-view-diff-open-pr" href={data.pullRequest.html_url} target="_blank" rel="noreferrer">
             Open PR
           </a>
@@ -60,37 +136,54 @@ export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
           </button>
         </header>
 
-        <div className="linear-view-diff-body">
+        <div className={`linear-view-diff-body${isSidebarCollapsed ? ' linear-view-diff-body-sidebar-collapsed' : ''}`}>
+          {isSidebarCollapsed ? null : (
           <aside className="linear-view-diff-sidebar">
             <div className="linear-view-diff-summary">
               <span>{data.pullRequest.changed_files} files changed</span>
               <span>+{data.pullRequest.additions} / -{data.pullRequest.deletions}</span>
             </div>
             {paths.length > 0 ? (
-              <FileTreePanel files={data.files} selectedPath={selectedPath} onSelectPath={setSelectedPath} />
+              <FileTreePanel files={data.files} selectedPath={selectedPath} onSelectPath={selectFile} />
             ) : (
               <div className="linear-view-diff-state">No changed files found.</div>
             )}
           </aside>
+          )}
 
-          <main className="linear-view-diff-content">
-            {selectedPath ? (
-              selectedDiff ? (
-                <FileDiff fileDiff={selectedDiff} options={diffOptions} />
-              ) : (
-                <FallbackPatch file={data.files.find((file) => file.filename === selectedPath)} />
-              )
-            ) : (
-              <AllFileDiffs files={data.files} diffs={allDiffs} />
-            )}
-          </main>
+          <Virtualizer className="linear-view-diff-content" contentClassName="linear-view-diff-virtualized-content" config={virtualizerConfig}>
+            <AllFileDiffs files={data.files} diffs={allDiffs} diffPathSet={diffPathSet} diffOptions={diffOptions} />
+          </Virtualizer>
         </div>
       </section>
     </>
   );
 }
 
-function AllFileDiffs({ files, diffs }: { files: GitHubPullRequestFile[]; diffs: FileDiffMetadata[] }) {
+function DiffLayoutToggle({ value, onChange }: { value: DiffLayout; onChange: (layout: DiffLayout) => void }) {
+  return (
+    <div className="linear-view-diff-layout-toggle" role="group" aria-label="Diff layout">
+      <button type="button" data-active={value === 'switched' ? '' : undefined} onClick={() => onChange('switched')}>
+        Switched
+      </button>
+      <button type="button" data-active={value === 'stacked' ? '' : undefined} onClick={() => onChange('stacked')}>
+        Stacked
+      </button>
+    </div>
+  );
+}
+
+function AllFileDiffs({
+  files,
+  diffs,
+  diffPathSet,
+  diffOptions,
+}: {
+  files: GitHubPullRequestFile[];
+  diffs: FileDiffMetadata[];
+  diffPathSet: ReadonlySet<string>;
+  diffOptions: typeof baseDiffOptions & { diffStyle: 'split' | 'unified'; theme: 'pierre-light' | 'pierre-dark'; themeType: LinearTheme };
+}) {
   if (diffs.length === 0) {
     return <div className="linear-view-diff-state">No text diffs found for this pull request.</div>;
   }
@@ -98,31 +191,41 @@ function AllFileDiffs({ files, diffs }: { files: GitHubPullRequestFile[]; diffs:
   return (
     <div className="linear-view-diff-file-list">
       {diffs.map((fileDiff) => (
-        <FileDiff key={fileDiff.name} fileDiff={fileDiff} options={diffOptions} />
+        <div key={fileDiff.name} className="linear-view-diff-file-anchor" data-linear-view-file-path={fileDiff.name}>
+          <FileDiff fileDiff={fileDiff} options={diffOptions} metrics={diffMetrics} />
+        </div>
       ))}
       {files
-        .filter((file) => !diffs.some((fileDiff) => fileDiff.name === file.filename))
+        .filter((file) => !diffPathSet.has(file.filename))
         .map((file) => (
-          <FallbackPatch key={file.filename} file={file} />
+          <div key={file.filename} className="linear-view-diff-file-anchor" data-linear-view-file-path={file.filename}>
+            <FallbackPatch file={file} />
+          </div>
         ))}
     </div>
   );
 }
 
 function FileTreePanel({ files, selectedPath, onSelectPath }: FileTreePanelProps) {
-  const paths = useMemo(() => files.map((file) => file.filename), [files]);
-  const gitStatus = useMemo(
-    () => files.map((file) => ({ path: file.filename, status: toTreeGitStatus(file.status) })),
-    [files],
-  );
+  const treeInput = useMemo(() => createFileTreeInput(files), [files]);
+  const annotationsByPathRef = useRef(treeInput.annotationsByPath);
+  const preparedInputRef = useRef(treeInput.preparedInput);
+  annotationsByPathRef.current = treeInput.annotationsByPath;
+
+  const renderRowDecoration = useCallback<FileTreeRowDecorationRenderer>(({ item }) => {
+    return annotationsByPathRef.current.get(item.path) ?? null;
+  }, []);
+
   const { model } = useFileTree({
-    paths,
+    preparedInput: treeInput.preparedInput,
     initialExpansion: 'open',
     initialSelectedPaths: selectedPath ? [selectedPath] : [],
-    flattenEmptyDirectories: true,
     icons: 'standard',
     density: 'compact',
-    gitStatus,
+    gitStatus: treeInput.gitStatus,
+    renderRowDecoration,
+    initialVisibleRowCount: TREE_INITIAL_VISIBLE_ROW_COUNT,
+    overscan: TREE_OVERSCAN,
     onSelectionChange: (selectedPaths) => {
       const nextPath = selectedPaths[0];
       if (nextPath) {
@@ -131,7 +234,72 @@ function FileTreePanel({ files, selectedPath, onSelectPath }: FileTreePanelProps
     },
   });
 
+  useEffect(() => {
+    if (preparedInputRef.current === treeInput.preparedInput) {
+      return;
+    }
+
+    preparedInputRef.current = treeInput.preparedInput;
+    model.resetPaths(treeInput.paths, { preparedInput: treeInput.preparedInput });
+    model.setGitStatus(treeInput.gitStatus);
+  }, [model, treeInput]);
+
+  useEffect(() => {
+    if (selectedPath && treeInput.annotationsByPath.has(selectedPath)) {
+      model.getItem(selectedPath)?.select();
+      return;
+    }
+
+    for (const path of model.getSelectedPaths()) {
+      model.getItem(path)?.deselect();
+    }
+  }, [model, selectedPath, treeInput.annotationsByPath]);
+
   return <FileTree className="linear-view-diff-tree" model={model} style={{ height: '100%' }} />;
+}
+
+type PreparedFileTreeInput = {
+  annotationsByPath: Map<string, { text: string; title: string }>;
+  gitStatus: GitStatusEntry[];
+  paths: string[];
+  preparedInput: FileTreePreparedInput;
+};
+
+function createFileTreeInput(files: GitHubPullRequestFile[]): PreparedFileTreeInput {
+  const paths = files.map((file) => file.filename);
+  const annotationsByPath = new Map<string, { text: string; title: string }>();
+  const gitStatus: GitStatusEntry[] = [];
+
+  for (const file of files) {
+    annotationsByPath.set(file.filename, {
+      text: formatFileChangeAnnotation(file),
+      title: `${file.changes.toLocaleString()} total changes: +${file.additions.toLocaleString()} / -${file.deletions.toLocaleString()}`,
+    });
+    gitStatus.push({ path: file.filename, status: toTreeGitStatus(file.status) });
+  }
+
+  return {
+    annotationsByPath,
+    gitStatus,
+    paths,
+    preparedInput: prepareFileTreeInput(paths, { flattenEmptyDirectories: true }),
+  };
+}
+
+function formatFileChangeAnnotation(file: GitHubPullRequestFile): string {
+  if (file.additions === 0 && file.deletions === 0) {
+    return file.changes > 0 ? file.changes.toLocaleString() : '0';
+  }
+
+  if (file.additions === 0) {
+    return `-${file.deletions.toLocaleString()}`;
+  }
+
+  if (file.deletions === 0) {
+    return `+${file.additions.toLocaleString()}`;
+  }
+
+  return `+${file.additions.toLocaleString()} / -${file.deletions.toLocaleString()}`;
 }
 
 function FallbackPatch({ file }: { file?: GitHubPullRequestFile }) {
@@ -144,6 +312,46 @@ function FallbackPatch({ file }: { file?: GitHubPullRequestFile }) {
   }
 
   return <pre className="linear-view-diff-raw-patch">{file.patch}</pre>;
+}
+
+async function readDiffLayoutPreference(): Promise<DiffLayout> {
+  if (!chrome?.storage?.sync) {
+    return DEFAULT_DIFF_LAYOUT;
+  }
+
+  const stored = await chrome.storage.sync.get(DIFF_LAYOUT_STORAGE_KEY);
+  const layout = stored[DIFF_LAYOUT_STORAGE_KEY];
+  return isDiffLayout(layout) ? layout : DEFAULT_DIFF_LAYOUT;
+}
+
+async function writeDiffLayoutPreference(layout: DiffLayout): Promise<void> {
+  if (!chrome?.storage?.sync) {
+    return;
+  }
+
+  await chrome.storage.sync.set({ [DIFF_LAYOUT_STORAGE_KEY]: layout });
+}
+
+function isDiffLayout(value: unknown): value is DiffLayout {
+  return value === 'switched' || value === 'stacked';
+}
+
+function getLinearTheme(): LinearTheme {
+  const theme = document.documentElement.dataset.theme?.toLowerCase();
+  if (theme === 'light' || theme === 'dark') {
+    return theme;
+  }
+
+  const colorScheme = getComputedStyle(document.documentElement).colorScheme.toLowerCase();
+  if (colorScheme.includes('light') && !colorScheme.includes('dark')) {
+    return 'light';
+  }
+
+  if (colorScheme.includes('dark') && !colorScheme.includes('light')) {
+    return 'dark';
+  }
+
+  return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
 function toTreeGitStatus(status: GitHubPullRequestFile['status']): 'added' | 'deleted' | 'modified' | 'renamed' {
