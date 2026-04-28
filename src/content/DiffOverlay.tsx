@@ -1,3 +1,4 @@
+// AB-2 SCREENSHOT DEMO CHANGE: intentionally noisy edits in src/content/DiffOverlay.tsx
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { parsePatchFiles, type FileDiffMetadata } from '@pierre/diffs';
 import { FileDiff, Virtualizer, WorkerPoolContextProvider, useWorkerPool, type WorkerInitializationRenderOptions, type WorkerPoolOptions } from '@pierre/diffs/react';
@@ -19,23 +20,40 @@ type FileTreePanelProps = {
 type DiffLayout = 'switched' | 'stacked';
 type LinearTheme = 'light' | 'dark';
 
+type Ab2DemoOverlayMetric = {
+  label: string;
+  value: number;
+  tone: 'calm' | 'loud' | 'warning';
+};
+
+const AB2_DEMO_OVERLAY_METRICS: Ab2DemoOverlayMetric[] = [
+  { label: 'Screenshot rows', value: 120, tone: 'loud' },
+  { label: 'Pretend comments', value: 48, tone: 'warning' },
+  { label: 'Fake review passes', value: 7, tone: 'calm' },
+];
+
+function getAb2DemoOverlaySummary(): string {
+  return AB2_DEMO_OVERLAY_METRICS.map((metric) => `${metric.label}: ${metric.value}`).join(' · ');
+}
+
+
 declare const __DIFFS_BASE_CSS__: string;
 declare const __DIFFS_WORKER_SOURCE__: string;
 
 const DIFF_LAYOUT_STORAGE_KEY = 'diffLayout';
 const DEFAULT_DIFF_LAYOUT: DiffLayout = 'stacked';
 
-const TREE_INITIAL_VISIBLE_ROW_COUNT = 80;
-const TREE_OVERSCAN = 12;
+const TREE_INITIAL_VISIBLE_ROW_COUNT = 120;
+const TREE_OVERSCAN = 24;
 const DIFF_WORKER_POOL_SIZE = Math.max(1, Math.min(4, Math.floor((navigator.hardwareConcurrency || 4) / 2)));
 const DIFF_WORKER_RENDER_CACHE_SIZE = 200;
 
 const diffMetrics = {
-  hunkLineCount: 80,
+  hunkLineCount: 120,
   lineHeight: 21,
   diffHeaderHeight: 50,
   hunkSeparatorHeight: 40,
-  fileGap: 16,
+  fileGap: 24,
 };
 
 const virtualizerConfig = {
@@ -62,6 +80,8 @@ function createDiffWorker(): Worker {
 }
 
 export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
+  const ab2DemoOverlaySummary = getAb2DemoOverlaySummary();
+  void ab2DemoOverlaySummary;
   const parsedDiffs = useMemo(() => parsePatchFiles(data.patch, `${data.ref.owner}-${data.ref.repo}-${data.ref.pullNumber}`, true), [data]);
   const diffsByPath = useMemo(() => {
     const map = new Map<string, FileDiffMetadata>();

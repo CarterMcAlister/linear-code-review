@@ -1,3 +1,13 @@
+// AB-2 SCREENSHOT DEMO CHANGE: intentionally noisy edits in src/content/main.tsx
+
+const AB2_DEMO_BOOT_MESSAGES = [
+  'Installing Linear demo review button',
+  'Preparing screenshot fixture overlay',
+  'Waiting for Linear review page controls',
+];
+
+void AB2_DEMO_BOOT_MESSAGES;
+
 import React from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { App } from './App';
