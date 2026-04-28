@@ -23,6 +23,17 @@ const tolerateNullCustomElements = {
   },
 };
 
+const diffsWorkerBuild = await esbuild.build({
+  entryPoints: ['node_modules/@pierre/diffs/dist/worker/worker.js'],
+  bundle: true,
+  format: 'esm',
+  platform: 'browser',
+  target: 'chrome120',
+  write: false,
+});
+
+const diffsWorkerSource = diffsWorkerBuild.outputFiles[0].text;
+
 await esbuild.build({
   entryPoints: ['src/content/main.tsx'],
   bundle: true,
@@ -34,6 +45,7 @@ await esbuild.build({
   define: {
     'process.env.NODE_ENV': '"production"',
     __DIFFS_BASE_CSS__: JSON.stringify(diffsBaseCSS),
+    __DIFFS_WORKER_SOURCE__: JSON.stringify(diffsWorkerSource),
   },
   plugins: [tolerateNullCustomElements],
 });

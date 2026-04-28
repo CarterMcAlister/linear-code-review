@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { parsePatchFiles, type FileDiffMetadata } from '@pierre/diffs';
-import { FileDiff, Virtualizer } from '@pierre/diffs/react';
+import { FileDiff, Virtualizer, WorkerPoolContextProvider, useWorkerPool, type WorkerInitializationRenderOptions, type WorkerPoolOptions } from '@pierre/diffs/react';
 import { prepareFileTreeInput, type FileTreePreparedInput, type FileTreeRowDecorationRenderer, type GitStatusEntry } from '@pierre/trees';
 import { FileTree, useFileTree } from '@pierre/trees/react';
 import type { GitHubPullRequestFile, PullRequestDiffData } from './github';
@@ -20,12 +20,15 @@ type DiffLayout = 'switched' | 'stacked';
 type LinearTheme = 'light' | 'dark';
 
 declare const __DIFFS_BASE_CSS__: string;
+declare const __DIFFS_WORKER_SOURCE__: string;
 
 const DIFF_LAYOUT_STORAGE_KEY = 'diffLayout';
 const DEFAULT_DIFF_LAYOUT: DiffLayout = 'stacked';
 
 const TREE_INITIAL_VISIBLE_ROW_COUNT = 80;
 const TREE_OVERSCAN = 12;
+const DIFF_WORKER_POOL_SIZE = Math.max(1, Math.min(4, Math.floor((navigator.hardwareConcurrency || 4) / 2)));
+const DIFF_WORKER_RENDER_CACHE_SIZE = 200;
 
 const diffMetrics = {
   hunkLineCount: 80,
@@ -44,6 +47,19 @@ const baseDiffOptions = {
   hunkSeparators: 'line-info-basic' as const,
   unsafeCSS: __DIFFS_BASE_CSS__,
 };
+
+const diffWorkerPoolOptions: WorkerPoolOptions = {
+  workerFactory: createDiffWorker,
+  poolSize: DIFF_WORKER_POOL_SIZE,
+  totalASTLRUCacheSize: DIFF_WORKER_RENDER_CACHE_SIZE,
+};
+
+function createDiffWorker(): Worker {
+  const workerUrl = URL.createObjectURL(new Blob([__DIFFS_WORKER_SOURCE__], { type: 'text/javascript' }));
+  const worker = new Worker(workerUrl, { name: 'linear-view-diff-renderer', type: 'module' });
+  URL.revokeObjectURL(workerUrl);
+  return worker;
+}
 
 export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
   const parsedDiffs = useMemo(() => parsePatchFiles(data.patch, `${data.ref.owner}-${data.ref.repo}-${data.ref.pullNumber}`, true), [data]);
@@ -65,11 +81,16 @@ export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
   const [diffLayout, setDiffLayout] = useState<DiffLayout>(DEFAULT_DIFF_LAYOUT);
   const [linearTheme, setLinearTheme] = useState<LinearTheme>(() => getLinearTheme());
   const modalRef = useRef<HTMLElement | null>(null);
+  const workerHighlighterOptions = useMemo<WorkerInitializationRenderOptions>(
+    () => ({
+      theme: getDiffTheme(linearTheme),
+    }),
+    [linearTheme],
+  );
   const diffOptions = useMemo(
     () => ({
       ...baseDiffOptions,
       diffStyle: diffLayout === 'switched' ? ('split' as const) : ('unified' as const),
-      theme: linearTheme === 'light' ? ('pierre-light' as const) : ('pierre-dark' as const),
       themeType: linearTheme,
     }),
     [diffLayout, linearTheme],
@@ -102,9 +123,15 @@ export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
 
   const scrollToFile = (path: string) => {
     requestAnimationFrame(() => {
-      const fileAnchors = modalRef.current?.querySelectorAll<HTMLElement>('[data-linear-view-file-path]');
-      const target = Array.from(fileAnchors ?? []).find((element) => element.dataset.linearViewFilePath === path);
-      target?.scrollIntoView({ block: 'start' });
+      const scrollContainer = modalRef.current?.querySelector<HTMLElement>('.linear-view-diff-content');
+      const target = modalRef.current?.querySelector<HTMLElement>(`[data-linear-view-file-path="${CSS.escape(path)}"]`);
+      if (!scrollContainer || !target) {
+        return;
+      }
+
+      const scrollContainerRect = scrollContainer.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      scrollContainer.scrollTo({ top: scrollContainer.scrollTop + targetRect.top - scrollContainerRect.top - 16 });
     });
   };
 
@@ -151,13 +178,26 @@ export function DiffOverlay({ data, onClose }: DiffOverlayProps) {
           </aside>
           )}
 
-          <Virtualizer className="linear-view-diff-content" contentClassName="linear-view-diff-virtualized-content" config={virtualizerConfig}>
-            <AllFileDiffs files={data.files} diffs={allDiffs} diffPathSet={diffPathSet} diffOptions={diffOptions} />
-          </Virtualizer>
+          <WorkerPoolContextProvider poolOptions={diffWorkerPoolOptions} highlighterOptions={workerHighlighterOptions}>
+            <WorkerPoolRenderOptionsSync theme={getDiffTheme(linearTheme)} />
+            <Virtualizer className="linear-view-diff-content" contentClassName="linear-view-diff-virtualized-content" config={virtualizerConfig}>
+              <AllFileDiffs files={data.files} diffs={allDiffs} diffPathSet={diffPathSet} diffOptions={diffOptions} />
+            </Virtualizer>
+          </WorkerPoolContextProvider>
         </div>
       </section>
     </>
   );
+}
+
+function WorkerPoolRenderOptionsSync({ theme }: { theme: 'pierre-light' | 'pierre-dark' }) {
+  const workerPool = useWorkerPool();
+
+  useEffect(() => {
+    void workerPool?.setRenderOptions({ theme });
+  }, [theme, workerPool]);
+
+  return null;
 }
 
 function DiffLayoutToggle({ value, onChange }: { value: DiffLayout; onChange: (layout: DiffLayout) => void }) {
@@ -182,7 +222,7 @@ function AllFileDiffs({
   files: GitHubPullRequestFile[];
   diffs: FileDiffMetadata[];
   diffPathSet: ReadonlySet<string>;
-  diffOptions: typeof baseDiffOptions & { diffStyle: 'split' | 'unified'; theme: 'pierre-light' | 'pierre-dark'; themeType: LinearTheme };
+  diffOptions: typeof baseDiffOptions & { diffStyle: 'split' | 'unified'; themeType: LinearTheme };
 }) {
   if (diffs.length === 0) {
     return <div className="linear-view-diff-state">No text diffs found for this pull request.</div>;
@@ -334,6 +374,10 @@ async function writeDiffLayoutPreference(layout: DiffLayout): Promise<void> {
 
 function isDiffLayout(value: unknown): value is DiffLayout {
   return value === 'switched' || value === 'stacked';
+}
+
+function getDiffTheme(theme: LinearTheme): 'pierre-light' | 'pierre-dark' {
+  return theme === 'light' ? 'pierre-light' : 'pierre-dark';
 }
 
 function getLinearTheme(): LinearTheme {
